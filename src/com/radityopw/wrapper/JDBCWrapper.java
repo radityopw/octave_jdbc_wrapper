@@ -103,4 +103,27 @@ public class JDBCWrapper {
         } 
         return result;
     }
+    
+    public String oneValQuery(String sql){
+        String result = null;
+        
+        JDBCWrapperResultRow data = oneRowQuery(sql);
+        
+        if(data != null){
+            result = data.getData(0);
+        }
+        
+        return result;
+    }
+    
+    public JDBCWrapperResultRow oneRowQuery(String sql){
+        JDBCWrapperResultRow result = null;
+        
+        JDBCWrapperResult executeQuery = executeQuery(sql);
+        if(!executeQuery.isError()){
+            result = executeQuery.getData(0);
+        }
+        
+        return result;
+    }
 }
