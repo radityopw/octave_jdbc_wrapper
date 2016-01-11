@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.radityopw.wrapper;
 
 import java.util.List;
@@ -15,9 +9,12 @@ import java.util.List;
 public class JDBCWrapperResultRow {
     
     private final List<String> data;
+    
+    protected boolean empty;
 
     public JDBCWrapperResultRow(List<String> data) {
         this.data = data;
+        this.empty = false;
     }
     
     public int totalData(){
@@ -27,5 +24,9 @@ public class JDBCWrapperResultRow {
         
     public String getData(int index){
         return data.get(index);
+    }
+    
+    public boolean isEmpty(){
+        return empty;
     }
 }

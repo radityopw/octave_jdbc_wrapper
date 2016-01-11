@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.radityopw.wrapper;
 
 import java.sql.Connection;
@@ -66,7 +60,7 @@ public class JDBCWrapper {
     }
     
     public JDBCWrapperResult executeQuery(String sql){
-        JDBCWrapperResult result = new JDBCWrapperResult(new LinkedList(), true, "Query Not Running");
+        JDBCWrapperResult result = new ErrorJDBCWrapperResult("Query Not Running");
         Statement stmt = null;
         try {
             connect();
@@ -76,7 +70,6 @@ public class JDBCWrapper {
             ResultSet rs = stmt.executeQuery(sql);
             ResultSetMetaData rsmd = rs.getMetaData();
             int cols = rsmd.getColumnCount();
-            
             List<JDBCWrapperResultRow> data = new LinkedList();
             
             while(rs.next()){
@@ -92,14 +85,13 @@ public class JDBCWrapper {
             
             stmt.close();
                      
-            
             if(con != null && !con.isClosed()) close();
             
             result = new JDBCWrapperResult(data, false, "");
             
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(JDBCWrapper.class.getName()).log(Level.SEVERE, null, ex);
-            result = new JDBCWrapperResult(new LinkedList(), true, ex.getMessage());
+            result = new ErrorJDBCWrapperResult(ex.getMessage());
         } 
         return result;
     }
@@ -117,7 +109,7 @@ public class JDBCWrapper {
     }
     
     public JDBCWrapperResultRow oneRowQuery(String sql){
-        JDBCWrapperResultRow result = null;
+        JDBCWrapperResultRow result = new EmptyJDBCWrapperResultRow();
         
         JDBCWrapperResult executeQuery = executeQuery(sql);
         if(!executeQuery.isError()){
