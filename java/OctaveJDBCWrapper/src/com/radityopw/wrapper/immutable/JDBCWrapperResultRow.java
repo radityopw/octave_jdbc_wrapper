@@ -8,11 +8,11 @@ import java.util.List;
  */
 public class JDBCWrapperResultRow {
     
-    private final List<String> data;
+    private final List<JDBCWrapperResultElement> data;
     
     protected boolean empty;
 
-    public JDBCWrapperResultRow(List<String> data) {
+    public JDBCWrapperResultRow(List<JDBCWrapperResultElement> data) {
         this.data = data;
         this.empty = false;
     }
@@ -22,7 +22,7 @@ public class JDBCWrapperResultRow {
     }
     
         
-    public String getData(int index){
+    public JDBCWrapperResultElement getData(int index){
         return data.get(index);
     }
     

@@ -1,9 +1,11 @@
 package com.radityopw.wrapper;
 
+import com.radityopw.wrapper.immutable.EmptyJDBCWrapperResultElement;
 import com.radityopw.wrapper.immutable.EmptyJDBCWrapperResultRow;
-import com.radityopw.wrapper.immutable.JDBCWrapperResultRow;
 import com.radityopw.wrapper.immutable.ErrorJDBCWrapperResult;
 import com.radityopw.wrapper.immutable.JDBCWrapperResult;
+import com.radityopw.wrapper.immutable.JDBCWrapperResultElement;
+import com.radityopw.wrapper.immutable.JDBCWrapperResultRow;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -79,9 +81,9 @@ public class OctaveJDBCWrapper {
             List<JDBCWrapperResultRow> data = new LinkedList();
             
             while(rs.next()){
-                List<String> row = new LinkedList();
+                List<JDBCWrapperResultElement> row = new LinkedList();
                 for(int i=1;i<=cols;i++){
-                    row.add(rs.getString(i));
+                    row.add(new JDBCWrapperResultElement(rs.getString(i)));
                 }
                 JDBCWrapperResultRow wrapperRow = new JDBCWrapperResultRow(row);
                 data.add(wrapperRow);
@@ -102,12 +104,12 @@ public class OctaveJDBCWrapper {
         return result;
     }
     
-    public String oneValQuery(String sql){
-        String result = null;
+    public JDBCWrapperResultElement oneValQuery(String sql){
+        JDBCWrapperResultElement result = new EmptyJDBCWrapperResultElement();
         
         JDBCWrapperResultRow data = oneRowQuery(sql);
         
-        if(data != null){
+        if(data != null && !data.isEmpty()){
             result = data.getData(0);
         }
         
