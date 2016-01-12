@@ -1,5 +1,9 @@
 package com.radityopw.wrapper;
 
+import com.radityopw.wrapper.immutable.EmptyJDBCWrapperResultRow;
+import com.radityopw.wrapper.immutable.JDBCWrapperResultRow;
+import com.radityopw.wrapper.immutable.ErrorJDBCWrapperResult;
+import com.radityopw.wrapper.immutable.JDBCWrapperResult;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

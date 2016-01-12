@@ -1,4 +1,4 @@
-package com.radityopw.wrapper;
+package com.radityopw.wrapper.immutable;
 
 import java.util.LinkedList;
 
