@@ -8,7 +8,7 @@ import java.util.LinkedList;
  */
 public class EmptyJDBCWrapperResult extends JDBCWrapperResult {
     public EmptyJDBCWrapperResult(){
-        super(new LinkedList(),false,"");
+        super(new LinkedList());
         empty = true;
     }
 }

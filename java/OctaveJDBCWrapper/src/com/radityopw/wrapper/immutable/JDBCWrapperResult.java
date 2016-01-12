@@ -13,11 +13,21 @@ public class JDBCWrapperResult {
     private final String errorMessage;
     protected boolean empty;
 
+    public JDBCWrapperResult(List<JDBCWrapperResultRow> data){
+        this.data = data;
+        this.error = false;
+        this.errorMessage = "";
+        this.empty = false;
+    }
+    
     public JDBCWrapperResult(List<JDBCWrapperResultRow> data, boolean isError, String errorMessage) {
         this.data = data;
         this.error = isError;
         this.errorMessage = errorMessage;
-
+        this.empty = false;
+        if(this.error){
+            this.empty = true;
+        }
     }
 
     public int totalData() {

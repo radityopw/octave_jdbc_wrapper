@@ -38,6 +38,7 @@ public class JDBCWrapper {
     private void connect() throws ClassNotFoundException, SQLException{
         Class.forName(driver);
         con = DriverManager.getConnection(url,user, pass);
+        con.setAutoCommit(true);
     }
     
     private void close() throws SQLException{
@@ -91,7 +92,7 @@ public class JDBCWrapper {
                      
             if(con != null && !con.isClosed()) close();
             
-            result = new JDBCWrapperResult(data, false, "");
+            result = new JDBCWrapperResult(data);
             
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(JDBCWrapper.class.getName()).log(Level.SEVERE, null, ex);
