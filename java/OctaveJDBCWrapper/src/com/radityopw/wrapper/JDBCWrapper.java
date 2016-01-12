@@ -43,6 +43,7 @@ public class JDBCWrapper {
     
     private void close() throws SQLException{
         con.close();
+        con = null;
     }
         
     public boolean execute(String sql){
