@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author radity
  */
-public class JDBCWrapper {
+public class OctaveJDBCWrapper {
     
     private final String driver;
     private final String url;
@@ -28,7 +28,7 @@ public class JDBCWrapper {
     private Connection con;
     
 
-    public JDBCWrapper(String driver,String url, String user, String pass) {
+    public OctaveJDBCWrapper(String driver,String url, String user, String pass) {
         this.driver = driver;
         this.url = url;
         this.user = user;
@@ -59,7 +59,7 @@ public class JDBCWrapper {
             
             if(con != null && !con.isClosed()) close();
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(JDBCWrapper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OctaveJDBCWrapper.class.getName()).log(Level.SEVERE, null, ex);
         } 
         
         return result;
@@ -96,7 +96,7 @@ public class JDBCWrapper {
             result = new JDBCWrapperResult(data);
             
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(JDBCWrapper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OctaveJDBCWrapper.class.getName()).log(Level.SEVERE, null, ex);
             result = new ErrorJDBCWrapperResult(ex.getMessage());
         } 
         return result;
