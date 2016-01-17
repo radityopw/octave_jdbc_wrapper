@@ -1,3 +1,3 @@
 # octave_jdbc_wrapper
-JDBC wrapper for octave
 
+untuk installasi dapat dilihat di https://github.com/radityopw/octave_jdbc_wrapper/wiki/Installasi
